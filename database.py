@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 HOST = os.getenv('DB_HOST', 'localhost')
 PORT = os.getenv('DB_PORT', '5432')
@@ -11,6 +14,8 @@ PASSWORD = os.getenv('DB_PASSWORD', 'password')
 DATABASE_URL = ''
 if HOST and PORT and USER and PASSWORD:
     DATABASE_URL = f'postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}'
+    print('\n\n\n\n')
+    print(DATABASE_URL)
 
     # Use the driver SQLAlchemy expects for Postgres when a full URL is supplied.
     if DATABASE_URL.startswith('postgresql://'):
